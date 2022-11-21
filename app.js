@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !== 'production'){
+  require('dotenv').config()
+}
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -6,6 +10,20 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
+const mongoose = require('mongoose')
+
+const url = process.env.DATABASE_URL
+const connect = mongoose.connect(url, {
+  useCreateIndex: true,
+  useFindAndModify: false,
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+
+connect.then(() => console.log('Connected correctly to db server'),
+  err => console.log(err)
+)
 
 var app = express();
 
