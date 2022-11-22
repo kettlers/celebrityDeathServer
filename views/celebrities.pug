@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1= title
+  ul
+  each celebrity in locals.celebrities
+    li 
+    pre= JSON.stringify(celebrity)

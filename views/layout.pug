@@ -1,7 +1,9 @@
+block variables
 doctype html
 html
   head
-    title= title
+    title #{title} | Celebrity Death Server
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    block header
     block content

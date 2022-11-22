@@ -7,11 +7,16 @@ const celebrityRouter = express.Router();
 celebrityRouter.route('/')
     .get((req, res, next) => {
         Celebrity.find()
-            //.populate('comments.author')
+            /*
+                //.populate('comments.author')
+                .then(celebrities => {
+                    res.statusCode = 200;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.json(celebrities);
+                })
+            */
             .then(celebrities => {
-                res.statusCode = 200;
-                res.setHeader('Content-Type', 'application/json');
-                res.json(celebrities);
+                res.render("celebrities", { title: "Celebrities", celebrities: celebrities })
             })
             .catch(err => next(err));
     })
